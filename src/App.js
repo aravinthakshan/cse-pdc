@@ -121,7 +121,7 @@ const ManipulLandingPage = () => {
                 className="h-12 w-auto rounded-lg"
               />
               <div className="text-xl tracking-wide  text-black-400 mb-0.2">
-                Product Development Cell, MIT Manipal
+                Product Development Centre, MIT Manipal
               </div>
             </div>
             <nav className="space-x-4">
