@@ -120,7 +120,7 @@ const ManipulLandingPage = () => {
                 alt="PDC Logo" 
                 className="h-12 w-auto rounded-lg"
               />
-              <div className="text-xl font-medium text-gray-800 tracking-wide">
+              <div className="text-xl tracking-wide  text-black-400 mb-0.2">
                 Product Development Cell, MIT Manipal
               </div>
             </div>
@@ -152,11 +152,11 @@ const ManipulLandingPage = () => {
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          Empowering Student Innovation
-          <span className="block text-[#CF7500] mt-2">Through Practical Technology Projects</span>
+          Product Development Cell
+          <span className="block text-[#CF7500] mt-2">Empowering Student Innovation through Practical Technology Projects</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          An initiative by the Department of Computer Science & Engineering to enhance student learning through hands-on product creation.
+          An initiative by the Department of Computer Science & Engineering, MIT Manipal to enhance student learning through hands-on product creation.
         </p>
       </div>
 
