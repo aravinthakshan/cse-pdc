@@ -9,56 +9,38 @@ import {
   CheckBadgeIcon, 
   UsersIcon, 
   DocumentTextIcon,
-    ServerIcon,
-    TableCellsIcon,
-    DevicePhoneMobileIcon,
-    Cog6ToothIcon,
-    WrenchScrewdriverIcon,
-    EnvelopeIcon, 
-    PhoneIcon, 
-    MapPinIcon
+  ServerIcon,
+  TableCellsIcon,
+  DevicePhoneMobileIcon,
+  Cog6ToothIcon,
+  WrenchScrewdriverIcon,
+  EnvelopeIcon, 
+  PhoneIcon, 
+  MapPinIcon
 } from '@heroicons/react/24/outline';
 
 const ManipulLandingPage = () => {
   const [activeProject, setActiveProject] = useState(null);
 
-  const services = [
+  const projects = [
     {
       title: "Faculty Management System",
       description: "Streamlined administrative tool for comprehensive faculty data management.",
-      icon: <BookOpenIcon className="w-12 h-12 text-[#CF7500]" />
+      image: "./Faculty.png",
+      technologies: ["ReactJS", "DBMS", "Kubernetes"],
+      // link: "#"
     },
     {
       title: "Student AI Chatbot Support",
       description: "AI-powered support system to assist students with real-time queries.",
-      icon: <CodeBracketIcon className="w-12 h-12 text-[#CF7500]" />
+      image: "/Messaging.png",
+      technologies: ["GenAI", "Docker", "PostgreSQL"],
+      // link: "#"
     },
     {
-      title: "AI-Powered Attendance System",
+      title: "AI Powered Student Attendance System",
       description: "Automated attendance tracking using advanced AI technologies.",
-      icon: <AcademicCapIcon className="w-12 h-12 text-[#CF7500]" />
-    }
-  ];
-
-  const projects = [
-    {
-      title: "Faculty Management System",
-      description: "Comprehensive project covering frontend, backend, and deployment strategies",
-      image: "https://picsum.photos/400/200",
-      technologies: ["ReactJS", "Spring Boot", "Kubernetes"],
-      // link: "#"
-    },
-    {
-      title: "Student AI Chatbot Support",
-      description: "Design and implement scalable microservices-based applications",
-      image: "https://picsum.photos/400/250",
-      technologies: ["Java", "Docker", "PostgreSQL"],
-      // link: "#"
-    },
-    {
-      title: "AI Powered Student Attedance System",
-      description: "Innovative projects exploring cutting-edge AI technologies",
-      image: "https://picsum.photos/400/260",
+      image: "/Attendance.png",
       technologies: ["Python", "TensorFlow", "React"],
       // link: "#"
     }
@@ -311,16 +293,16 @@ const ManipulLandingPage = () => {
                     alt={project.title} 
                     className="w-full h-48 object-cover"
                   />
-                  {activeProject === index && (
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                      <a 
-                        href={project.link} 
-                        className="bg-white text-[#CF7500] px-4 py-2 rounded-full hover:bg-[#FFF4E6]"
-                      >
-                        View Details
-                      </a>
-                    </div>
-                  )}
+                  {/* {activeProject === index && (
+                    // <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    //   <a 
+                    //     href={project.link} 
+                    //     className="bg-white text-[#CF7500] px-4 py-2 rounded-full hover:bg-[#FFF4E6]"
+                    //   >
+                    //     View Details
+                    //   </a>
+                    // </div>
+                  )} */}
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -398,10 +380,10 @@ const ManipulLandingPage = () => {
 
 
       {/* Eligibility Section */}
-      <div id="eligibility" className="bg-white py-16">
+      <div id="eligibility" className="py-16 bg-[#F4F4F4]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Eligibility Criteria</h2>
-          <div className="max-w-3xl mx-auto bg-[#F4F4F4] p-8 rounded-xl">
+          <div className="max-w-3xl mx-auto bg-white py-16 p-8 rounded-xl">
             <ul className="space-y-4 text-gray-700">
               <li className="flex items-start">
                 <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1" />
@@ -426,10 +408,10 @@ const ManipulLandingPage = () => {
 
 
 
-    <div id="contact" className="py-16 bg-[#F4F4F4]">
+    <div id="contact" className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Contact Us</h2>
-        <div className="max-w-3xl mx-auto bg-white py-16 rounded-xl p-8 shadow-md">
+        <div className="max-w-3xl mx-auto py-16 bg-[#F4F4F4] py-16 rounded-xl p-8 shadow-md">
           <div className="space-y-6">
             <div className="flex items-center">
               <EnvelopeIcon className="w-8 h-8 text-[#CF7500] mr-4" />
@@ -483,8 +465,7 @@ const ManipulLandingPage = () => {
         </h2>
         <p className="text-white text-xl mb-8">
           Transform your learning experience with real-world projects</p>
-        <p className="font-bold text-white mb-4">A programming test may be conducted based on the number of applications*</p>
-        
+          {/* <p className="font-bold text-white mb-2">A programming test may be conducted based on the number of applications*</p> */}
         <a 
           href="https://forms.gle/yourGoogleFormLink" 
           target="_blank"
@@ -492,11 +473,12 @@ const ManipulLandingPage = () => {
         >
           Apply Now
         </a>
+        
       </div>
 
       {/* Footer */}
       <footer className="bg-black text-white py-6 text-center">
-        <p>© 2024 Department of Computer Science & Engineering, Manipal</p>
+        <p>© 2024 Department of Computer Science & Engineering,MIT Manipal</p>
         <p className="text-sm text-gray-400 mt-2">*Conditions Apply</p>
       </footer>
     </div>
