@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .header-container .logo-and-title {
+    margin-bottom: 1rem;
+  }
+
+  .header-container nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

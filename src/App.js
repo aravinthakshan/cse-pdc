@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-
 import { 
   BookOpenIcon, 
   CodeBracketIcon, 
@@ -28,24 +27,22 @@ const ManipulLandingPage = () => {
       description: "Streamlined administrative tool for comprehensive faculty data management.",
       image: "./Faculty.png",
       technologies: ["ReactJS", "DBMS", "Kubernetes"],
-      // link: "#"
     },
     {
       title: "Student AI Chatbot Support",
       description: "AI-powered support system to assist students with real-time queries.",
       image: "/Messaging.png",
       technologies: ["GenAI", "Docker", "PostgreSQL"],
-      // link: "#"
     },
     {
       title: "AI Powered Student Attendance System",
       description: "Automated attendance tracking using advanced AI technologies.",
       image: "/Attendance.png",
       technologies: ["Python", "TensorFlow", "React"],
-      // link: "#"
     }
   ];
 
+  // Header component moved up to be a separate component
   const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -54,6 +51,7 @@ const ManipulLandingPage = () => {
     };
   
     return (
+      <div class="header-container">
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative">
           {/* Mobile Layout */}
@@ -142,42 +140,16 @@ const ManipulLandingPage = () => {
           </div>
         </div>
       </div>
+      </div>
     );
   };
 
   return (
     <div className="min-h-screen bg-[#F4F4F4] antialiased">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <img 
-              src="/Manipal.png" 
-              alt="PDC Logo" 
-              className="h-12 w-auto rounded-lg "
-              // border-2 border-[#CF7500]
+      {/* Now using the Header component */}
+      <Header />
 
-            />
-        <div className="text-xl font-medium text-gray-800 tracking-wide">
-          Product Development Cell, MIT Manipal
-        </div>
-
-          </div>
-          <nav className="space-x-4">
-            <a href="#about" className="text-gray-600 hover:text-[#CF7500]">About</a>
-            <a href="#projects" className="text-gray-600 hover:text-[#CF7500]">Projects</a>
-            <a href="#benefits" className="text-gray-600 hover:text-[#CF7500]">Benefits</a>
-            <a 
-              href="https://forms.gle/yourGoogleFormLink" 
-              target="_blank" 
-              className="bg-[#CF7500] text-white px-4 py-2 rounded-full hover:bg-[#A55800] transition-colors"
-            >
-              Apply Now
-            </a>
-          </nav>
-        </div>
-      </div>
-
+      {/* Rest of your existing component code remains the same */}
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h1 className="text-5xl font-bold text-gray-900 mb-4">
@@ -187,16 +159,8 @@ const ManipulLandingPage = () => {
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           An initiative by the Department of Computer Science & Engineering to enhance student learning through hands-on product creation.
         </p>
-        {/* <div className="mt-8">
-          <a 
-            href="https://forms.gle/yourGoogleFormLink" 
-            target="_blank" 
-            className="bg-[#CF7500] text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#A55800] transition-colors"
-          >
-            Apply for Projects
-          </a>
-        </div> */}
       </div>
+
 
 
       {/* About Section */}
