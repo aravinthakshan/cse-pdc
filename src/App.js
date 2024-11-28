@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 import { 
   BookOpenIcon, 
   CodeBracketIcon, 
@@ -18,8 +17,9 @@ import {
   MapPinIcon
 } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
+import Header from './components/Header.tsx';
 
-const ManipulLandingPage = () => {
+export default function ManipulLandingPage() {
   const [activeProject, setActiveProject] = useState(null);
   const [scrollY, setScrollY] = useState(0);
 
@@ -49,115 +49,6 @@ const ManipulLandingPage = () => {
       technologies: ["Python", "TensorFlow", "React"],
     }
   ];
-
-  const Header = () => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-    const toggleMobileMenu = () => {
-      setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
-  
-    return (
-      <motion.div 
-        className="fixed w-full z-50 bg-white shadow-sm"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative">
-          {/* Mobile Layout */}
-          <div className="md:hidden flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/Manipal.png" 
-                alt="PDC Logo" 
-                className="h-10 w-auto rounded-lg"
-              />
-              <div className="text-xl tracking-wide text-gray-800">
-                PDC, MIT Manipal
-              </div>
-            </div>
-            
-            {/* Mobile Menu Toggle */}
-            <button 
-              onClick={toggleMobileMenu} 
-              className="text-gray-600 focus:outline-none"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-  
-          {/* Mobile Dropdown Menu */}
-          {isMobileMenuOpen && (
-            <motion.div 
-              className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <nav className="flex flex-col items-center py-4 space-y-4">
-                <a 
-                  href="#about" 
-                  className="text-gray-600 hover:text-[#CF7500] transition-colors"
-                  onClick={toggleMobileMenu}
-                >
-                  About
-                </a>
-                <a 
-                  href="#projects" 
-                  className="text-gray-600 hover:text-[#CF7500] transition-colors"
-                  onClick={toggleMobileMenu}
-                >
-                  Projects
-                </a>
-                <a 
-                  href="#benefits" 
-                  className="text-gray-600 hover:text-[#CF7500] transition-colors"
-                  onClick={toggleMobileMenu}
-                >
-                  Benefits
-                </a>
-                <a 
-                  href="https://docs.google.com/forms/d/1MllTwj8JtS2yDV8dERSx9-iQakt_pFQ483qYHoIS6rU/viewform?edit_requested=true" 
-                  target="_blank" 
-                  className="bg-[#CF7500] text-white px-4 py-2 rounded-full hover:bg-[#A55800] transition-colors"
-                  onClick={toggleMobileMenu}
-                >
-                  Apply Now
-                </a>
-              </nav>
-            </motion.div>
-          )}
-  
-          {/* Desktop Layout */}
-          <div className="hidden md:flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/Manipal.png" 
-                alt="PDC Logo" 
-                className="h-12 w-auto rounded-lg"
-              />
-              <div className="text-xl tracking-wide text-gray-800">
-                Product Development Centre, MIT Manipal
-              </div>
-            </div>
-            <nav className="space-x-6">
-              <a href="#about" className="text-gray-600 hover:text-[#CF7500] transition-colors">About</a>
-              <a href="#projects" className="text-gray-600 hover:text-[#CF7500] transition-colors">Projects</a>
-              <a href="#benefits" className="text-gray-600 hover:text-[#CF7500] transition-colors">Benefits</a>
-              <a 
-                href="https://docs.google.com/forms/d/1MllTwj8JtS2yDV8dERSx9-iQakt_pFQ483qYHoIS6rU/viewform?edit_requested=true" 
-                target="_blank" 
-                className="bg-[#CF7500] text-white px-6 py-2 rounded-full hover:bg-[#A55800] transition-colors"
-              >
-                Apply Now
-              </a>
-            </nav>
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
 
   return (
     <div className="min-h-screen bg-[#F4F4F4] antialiased font-sans">
@@ -395,117 +286,86 @@ const ManipulLandingPage = () => {
         </div>
       </motion.div>
 
-      {/* Eligibility Section */}
+      {/* Eligibility and Contact Section */}
       <motion.div 
-        id="eligibility" 
-        className="py-24 bg-white"
+        className="py-24 bg-gradient-to-b [#F4F4F4]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.8 } }}
         viewport={{ once: true }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2 
-            className="text-4xl font-bold text-center text-gray-900 mb-12"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            Eligibility Criteria
-          </motion.h2>
-          <motion.div 
-            className="max-w-3xl mx-auto bg-[#F4F4F4] p-8 rounded-xl shadow-lg"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <ul className="space-y-4 text-gray-700">
-              {[
-                "Open to B.Tech students from 4th, 6th, and 8th Semesters, No backs.",
-                "Familiarity with HTML, CSS, and JavaScript, basic understanding of Java and OOP concepts.",
-                "Willingness to learn and adapt to new technologies, frameworks and dedicate sufficient time.",
-                "Good communication skills and the ability to work effectively in a team environment.",
-              ].map((criterion, index) => (
-                <motion.li 
-                  key={index}
-                  className="flex items-start"
-                  initial={{ x: -50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                >
-                  <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1 flex-shrink-0" />
-                  <span>{criterion}</span>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Contact Section */}
-      <motion.div 
-        id="contact" 
-        className="bg-[#F4F4F4] py-24"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.8 } }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2 
-            className="text-4xl font-bold text-center text-gray-900 mb-12"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
-            Contact Us
-          </motion.h2>
-          <motion.div 
-            className="max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="space-y-6">
-              {[
-                { icon: EnvelopeIcon, title: "Email", content: "manoj.r@manipal.edu", href: "mailto:manoj.r@manipal.edu" },
-                { icon: PhoneIcon, title: "Mobile", content: "+91 9740288939", href: "tel:+919740288939" },
-                { icon: MapPinIcon, title: "Location", content: "Manipal Institute of Technology, Manipal, Karnataka 576104" },
-              ].map((item, index) => (
-                <motion.div 
-                  key={index}
-                  className="flex items-center"
-                  initial={{ x: -50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                >
-                  <item.icon className="w-8 h-8 text-[#CF7500] mr-4" />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
-                    {item.href ? (
-                      <a 
-                        href={item.href}
-                        className="text-gray-600 hover:text-[#CF7500] transition-colors"
-                      >
-                        {item.content}
-                      </a>
-                    ) : (
-                      <p className="text-gray-600">{item.content}</p>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Eligibility Section */}
             <motion.div 
-              className="mt-8 text-center"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
             >
-              <p className="text-sm text-gray-500 italic">
-                * For any inquiries related to the Product Development Cell
-              </p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Eligibility Criteria</h2>
+              <ul className="space-y-4 text-gray-700">
+                {[
+                  "Open to B.Tech students from 4th, 6th, and 8th Semesters, No backs.",
+                  "Familiarity with HTML, CSS, and JavaScript, basic understanding of Java and OOP concepts.",
+                  "Willingness to learn and adapt to new technologies, frameworks and dedicate sufficient time.",
+                  "Good communication skills and the ability to work effectively in a team environment.",
+                ].map((criterion, index) => (
+                  <li key={index} className="flex items-start">
+                    <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1 flex-shrink-0" />
+                    <span>{criterion}</span>
+                  </li>
+                ))}
+              </ul>
+              {/* <motion.img 
+                src="/eligibility.jpg" 
+                alt="Eligibility" 
+                className="mt-8 rounded-lg shadow-md"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              /> */}
             </motion.div>
-          </motion.div>
+
+            {/* Contact Section */}
+            <motion.div 
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Us</h2>
+              <div className="space-y-6">
+                {[
+                  { icon: EnvelopeIcon, title: "Email", content: "manoj.r@manipal.edu", href: "mailto:manoj.r@manipal.edu" },
+                  { icon: PhoneIcon, title: "Mobile", content: "+91 9740288939", href: "tel:+919740288939" },
+                  { icon: MapPinIcon, title: "Location", content: "Manipal Institute of Technology, Manipal, Karnataka 576104" },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center">
+                    <item.icon className="w-8 h-8 text-[#CF7500] mr-4" />
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
+                      {item.href ? (
+                        <a 
+                          href={item.href}
+                          className="text-gray-600 hover:text-[#CF7500] transition-colors"
+                        >
+                          {item.content}
+                        </a>
+                      ) : (
+                        <p className="text-gray-600">{item.content}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {/* <motion.img 
+                src="/contact.jpg" 
+                alt="Contact" 
+                className="mt-8 rounded-lg shadow-md"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              /> */}
+            </motion.div>
+          </div>
         </div>
       </motion.div>
 
@@ -551,7 +411,5 @@ const ManipulLandingPage = () => {
       </footer>
     </div>
   );
-};
-
-export default ManipulLandingPage;
+}
 
