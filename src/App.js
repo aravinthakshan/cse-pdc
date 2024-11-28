@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { 
   BookOpenIcon, 
@@ -17,9 +17,17 @@ import {
   PhoneIcon, 
   MapPinIcon
 } from '@heroicons/react/24/outline';
+import { motion } from 'framer-motion';
 
 const ManipulLandingPage = () => {
   const [activeProject, setActiveProject] = useState(null);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const projects = [
     {
@@ -50,8 +58,12 @@ const ManipulLandingPage = () => {
     };
   
     return (
-      <div class="header-container">
-      <div className="bg-white shadow-sm">
+      <motion.div 
+        className="fixed w-full z-50 bg-white shadow-sm"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 relative">
           {/* Mobile Layout */}
           <div className="md:hidden flex justify-between items-center">
@@ -61,7 +73,7 @@ const ManipulLandingPage = () => {
                 alt="PDC Logo" 
                 className="h-10 w-auto rounded-lg"
               />
-              <div className="text-xl tracking-wide  text-black-400 mb-0.2">
+              <div className="text-xl tracking-wide text-gray-800">
                 PDC, MIT Manipal
               </div>
             </div>
@@ -77,25 +89,30 @@ const ManipulLandingPage = () => {
   
           {/* Mobile Dropdown Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50">
+            <motion.div 
+              className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
               <nav className="flex flex-col items-center py-4 space-y-4">
                 <a 
                   href="#about" 
-                  className="text-gray-600 hover:text-[#CF7500]"
+                  className="text-gray-600 hover:text-[#CF7500] transition-colors"
                   onClick={toggleMobileMenu}
                 >
                   About
                 </a>
                 <a 
                   href="#projects" 
-                  className="text-gray-600 hover:text-[#CF7500]"
+                  className="text-gray-600 hover:text-[#CF7500] transition-colors"
                   onClick={toggleMobileMenu}
                 >
                   Projects
                 </a>
                 <a 
                   href="#benefits" 
-                  className="text-gray-600 hover:text-[#CF7500]"
+                  className="text-gray-600 hover:text-[#CF7500] transition-colors"
                   onClick={toggleMobileMenu}
                 >
                   Benefits
@@ -109,7 +126,7 @@ const ManipulLandingPage = () => {
                   Apply Now
                 </a>
               </nav>
-            </div>
+            </motion.div>
           )}
   
           {/* Desktop Layout */}
@@ -120,135 +137,232 @@ const ManipulLandingPage = () => {
                 alt="PDC Logo" 
                 className="h-12 w-auto rounded-lg"
               />
-              <div className="text-xl tracking-wide  text-black-400 mb-0.2">
+              <div className="text-xl tracking-wide text-gray-800">
                 Product Development Centre, MIT Manipal
               </div>
             </div>
-            <nav className="space-x-4">
-              <a href="#about" className="text-gray-600 hover:text-[#CF7500]">About</a>
-              <a href="#projects" className="text-gray-600 hover:text-[#CF7500]">Projects</a>
-              <a href="#benefits" className="text-gray-600 hover:text-[#CF7500]">Benefits</a>
+            <nav className="space-x-6">
+              <a href="#about" className="text-gray-600 hover:text-[#CF7500] transition-colors">About</a>
+              <a href="#projects" className="text-gray-600 hover:text-[#CF7500] transition-colors">Projects</a>
+              <a href="#benefits" className="text-gray-600 hover:text-[#CF7500] transition-colors">Benefits</a>
               <a 
                 href="https://docs.google.com/forms/d/1MllTwj8JtS2yDV8dERSx9-iQakt_pFQ483qYHoIS6rU/viewform?edit_requested=true" 
                 target="_blank" 
-                className="bg-[#CF7500] text-white px-4 py-2 rounded-full hover:bg-[#A55800] transition-colors"
+                className="bg-[#CF7500] text-white px-6 py-2 rounded-full hover:bg-[#A55800] transition-colors"
               >
                 Apply Now
               </a>
             </nav>
           </div>
         </div>
-      </div>
-      </div>
+      </motion.div>
     );
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F4F4] antialiased">
-      {/* Now using the Header component */}
+    <div className="min-h-screen bg-[#F4F4F4] antialiased font-sans">
       <Header />
 
-      {/* Rest of your existing component code remains the same */}
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          Product Development Cell
-          <span className="block text-[#CF7500] mt-2">Empowering Student Innovation through Practical Technology Projects</span>
-        </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          An initiative by the Department of Computer Science & Engineering, MIT Manipal to enhance student learning through hands-on product creation.
-        </p>
-      </div>
-
-
+      <motion.div 
+        className="h-screen flex items-center justify-center bg-gradient-to-br from-[#CF7500] to-[#A55800] text-white"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.h1 
+            className="text-5xl md:text-6xl font-bold mb-6"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            Product Development Cell
+            <span className="block text-[#FFD700] mt-2">Empowering Student Innovation through Practical Technology Projects</span>
+          </motion.h1>
+          <motion.p 
+            className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            An initiative by the Department of Computer Science & Engineering, MIT Manipal to enhance student learning through hands-on product creation.
+          </motion.p>
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            <a 
+              href="#about"
+              className="bg-white text-[#CF7500] px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#FFD700] transition-colors inline-block"
+            >
+              Learn More
+            </a>
+          </motion.div>
+        </div>
+      </motion.div>
 
       {/* About Section */}
-      <div id="about" className="bg-[#F4F4F4] py-16">
+      <motion.div 
+        id="about" 
+        className="py-24 bg-white"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.8 } }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">About Us</h2>
+          <motion.h2 
+            className="text-4xl font-bold text-center text-gray-900 mb-12"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            About Us
+          </motion.h2>
           <div className="flex flex-col md:flex-row items-center md:space-x-8">
-            <div className="md:w-1/2">
+            <motion.div 
+              className="md:w-1/2"
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
               <img 
                 src="/Building.jpg" 
                 alt="About Image" 
                 className="rounded-lg shadow-md w-full object-cover"
               />
-            </div>
-            <div className="md:w-1/2 mt-8 md:mt-0">
+            </motion.div>
+            <motion.div 
+              className="md:w-1/2 mt-8 md:mt-0"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
               <p className="text-lg text-gray-700 mb-4">
                 The <strong>Product Development Centre</strong> (PDC) is an initiative by the 
                 <strong> Department of Computer Science & Engineering of MIT Manipal</strong>, it offers opportunities to work on real-time projects 
                 under faculty mentorship, aligned with industry standards and technological advancements.
               </p>
               <p className="text-lg text-gray-700 mb-4">
-              To foster an environment where students are introduced to cutting-edge technology platforms and tools, 
-              focusing on skill development by guiding them to shape their innovative ideas into viable and impactful products.
+                To foster an environment where students are introduced to cutting-edge technology platforms and tools, 
+                focusing on skill development by guiding them to shape their innovative ideas into viable and impactful products.
               </p>
-              {/* <p className="text-lg text-gray-700">
-                From full-stack development to AI-powered applications, we offer a variety of opportunities for 
-                students to contribute, learn, and grow in a collaborative environment.
-              </p> */}
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
-
+      </motion.div>
 
       {/* Key Benefits Section */}
-      <div id="benefits" className="bg-white py-16">
+      <motion.div 
+        id="benefits" 
+        className="bg-[#F4F4F4] py-24"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.8 } }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Key Benefits</h2>
+          <motion.h2 
+            className="text-4xl font-bold text-center text-gray-900 mb-12"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            Key Benefits
+          </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-[#F4F4F4] p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300">
-              <RocketLaunchIcon className="w-12 h-12 mx-auto text-[#CF7500] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Real-world Experience</h3>
-              <p className="text-gray-600">
-                Gain hands-on experience in full-stack development and project management methodologies.
-              </p>
-            </div>
-            <div className="bg-[#F4F4F4] p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300">
-              <CheckBadgeIcon className="w-12 h-12 mx-auto text-[#CF7500] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Industry-Relevant Skills</h3>
-              <p className="text-gray-600">
-              Develop industry relevant skills in building modern technologies.
-              </p>
-            </div>
-            <div className="bg-[#F4F4F4] p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300">
-              <AcademicCapIcon className="w-12 h-12 mx-auto text-[#CF7500] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Professional Recognition</h3>
-              <p className="text-gray-600">
-              On Completion, Students will get experience certificate useful for thier summer internships.
-              (Projects can be considered as part of their ITR*)             </p>
-            </div>
-            <div className="bg-[#F4F4F4] p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300">
-              <DocumentTextIcon className="w-12 h-12 mx-auto text-[#CF7500] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Recommendation Letters</h3>
-              <p className="text-gray-600">
-                Receive experience certificates and potential letters of recommendation, from the CSE department on successful completion*
-              </p>
-              </div>
-              <div className="bg-[#F4F4F4] p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300">
-              <UsersIcon className="w-12 h-12 mx-auto text-[#CF7500] mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Connections</h3>
-              <p className="text-gray-600">
-              Regular connect with Industry experts and opportunity to participate in workshops
-              </p>
-            </div>
+            {[
+              { icon: RocketLaunchIcon, title: "Real-world Experience", description: "Gain hands-on experience in full-stack development and project management methodologies." },
+              { icon: CheckBadgeIcon, title: "Industry-Relevant Skills", description: "Develop industry relevant skills in building modern technologies." },
+              { icon: AcademicCapIcon, title: "Professional Recognition", description: "On Completion, Students will get experience certificate useful for their summer internships. (Projects can be considered as part of their ITR*)" },
+              { icon: DocumentTextIcon, title: "Recommendation Letters", description: "Receive experience certificates and potential letters of recommendation, from the CSE department on successful completion*" },
+              { icon: UsersIcon, title: "Connections", description: "Regular connect with Industry experts and opportunity to participate in workshops" },
+            ].map((benefit, index) => (
+              <motion.div 
+                key={index}
+                className="bg-white p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <benefit.icon className="w-12 h-12 mx-auto text-[#CF7500] mb-4" />
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">{benefit.title}</h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </div>
+      </motion.div>
+
+      {/* Tech Stacks Section */}
+      <motion.div 
+        id="tech-stack" 
+        className="bg-white py-24"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.8 } }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2 
+            className="text-4xl font-bold text-center text-gray-900 mb-12"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            Tech Stacks
+          </motion.h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-center">
+            {[
+              { icon: CodeBracketIcon, title: "Languages", description: "JavaScript, TypeScript" },
+              { icon: DevicePhoneMobileIcon, title: "Front-End", description: "ReactJS, React Native" },
+              { icon: ServerIcon, title: "Back-End", description: "Spring Boot, Microservices, DDD" },
+              { icon: TableCellsIcon, title: "Database", description: "PostgreSQL" },
+              { icon: Cog6ToothIcon, title: "DevOps", description: "Jenkins, Docker, Kubernetes" },
+              { icon: WrenchScrewdriverIcon, title: "Additional Tools", description: "Figma, Git, VS Code, Postman" },
+            ].map((stack, index) => (
+              <motion.div 
+                key={index}
+                className="flex flex-col items-center"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <stack.icon className="w-14 h-14 text-[#CF7500] mb-4" />
+                <h3 className="text-lg font-semibold text-gray-800">{stack.title}</h3>
+                <p className="text-gray-600">{stack.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
 
       {/* Projects Section */}
-      <div id="projects" className="py-16 bg-[#F4F4F4]">
+      <motion.div 
+        id="projects" 
+        className="py-24 bg-white"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.8 } }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Upcoming Projects</h2>
+          <motion.h2 
+            className="text-4xl font-bold text-center text-gray-900 mb-12"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            Upcoming Projects
+          </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <div 
+              <motion.div 
                 key={index}
-                className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl"
+                className="bg-[#F4F4F4] rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl"
                 onMouseEnter={() => setActiveProject(index)}
                 onMouseLeave={() => setActiveProject(null)}
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="relative">
                   <img 
@@ -256,16 +370,6 @@ const ManipulLandingPage = () => {
                     alt={project.title} 
                     className="w-full h-48 object-cover"
                   />
-                  {/* {activeProject === index && (
-                    // <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    //   <a 
-                    //     href={project.link} 
-                    //     className="bg-white text-[#CF7500] px-4 py-2 rounded-full hover:bg-[#FFF4E6]"
-                    //   >
-                    //     View Details
-                    //   </a>
-                    // </div>
-                  )} */}
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -274,7 +378,7 @@ const ManipulLandingPage = () => {
                   <p className="text-gray-600 mb-4">
                     {project.description}
                   </p>
-                  <div className="flex space-x-2">
+                  <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
                       <span 
                         key={techIndex} 
@@ -285,163 +389,164 @@ const ManipulLandingPage = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Tech Stacks Section */}
-<div id="tech-stack" className="bg-gray-50 py-16">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Tech Stacks</h2>
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-center">
-      {/* JavaScript and TypeScript */}
-      <div className="flex flex-col items-center">
-        <CodeBracketIcon className="w-14 h-14 text-blue-600 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-800">Languages</h3>
-        <p className="text-gray-600">JavaScript, TypeScript</p>
-      </div>
-
-      {/* ReactJS and ReactNative */}
-      <div className="flex flex-col items-center">
-        <DevicePhoneMobileIcon className="w-14 h-14 text-green-600 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-800">Front-End</h3>
-        <p className="text-gray-600">ReactJS, React Native</p>
-      </div>
-
-      {/* Spring Boot and Microservices */}
-      <div className="flex flex-col items-center">
-        <ServerIcon className="w-14 h-14 text-purple-600 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-800">Back-End</h3>
-        <p className="text-gray-600">Spring Boot, Microservices, DDD</p>
-      </div>
-
-      {/* PostgreSQL */}
-      <div className="flex flex-col items-center">
-        <TableCellsIcon className="w-14 h-14 text-yellow-600 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-800">Database</h3>
-        <p className="text-gray-600">PostgreSQL</p>
-      </div>
-
-      {/* Jenkins, Docker, Kubernetes */}
-      <div className="flex flex-col items-center">
-        <Cog6ToothIcon className="w-14 h-14 text-red-600 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-800">DevOps</h3>
-        <p className="text-gray-600">Jenkins, Docker, Kubernetes</p>
-      </div>
-
-      {/* Additional Tools */}
-      <div className="flex flex-col items-center">
-        <WrenchScrewdriverIcon className="w-14 h-14 text-indigo-600 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-800">Additional Tools</h3>
-        <p className="text-gray-600">Figma, Git, VS Code, Postman</p>
-      </div>
-    </div>
-  </div>
-</div>
-
+      </motion.div>
 
       {/* Eligibility Section */}
-      <div id="eligibility" className="py-16 bg-[#F4F4F4]">
+      <motion.div 
+        id="eligibility" 
+        className="py-24 bg-white"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.8 } }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Eligibility Criteria</h2>
-          <div className="max-w-3xl mx-auto bg-white py-16 p-8 rounded-xl">
+          <motion.h2 
+            className="text-4xl font-bold text-center text-gray-900 mb-12"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            Eligibility Criteria
+          </motion.h2>
+          <motion.div 
+            className="max-w-3xl mx-auto bg-[#F4F4F4] p-8 rounded-xl shadow-lg"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <ul className="space-y-4 text-gray-700">
-              <li className="flex items-start">
-                <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1" />
-                Open to B.Tech students from 4th, 6th, and 8th Semesters, No backs.
-              </li>
-              <li className="flex items-start">
-                <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1" />
-                Familiarity with HTML, CSS, and JavaScript, basic understanding of Java and OOP concepts.
-              </li>
-              <li className="flex items-start">
-                <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1" />
-                Willingness to learn and adapt to new technologies, frameworks and dedicate sufficient time. 
-              </li>
-              <li className="flex items-start">
-                <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1" />
-                Good communication skills and the ability to work effectively in a team environment.
-              </li>
+              {[
+                "Open to B.Tech students from 4th, 6th, and 8th Semesters, No backs.",
+                "Familiarity with HTML, CSS, and JavaScript, basic understanding of Java and OOP concepts.",
+                "Willingness to learn and adapt to new technologies, frameworks and dedicate sufficient time.",
+                "Good communication skills and the ability to work effectively in a team environment.",
+              ].map((criterion, index) => (
+                <motion.li 
+                  key={index}
+                  className="flex items-start"
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.1 * index }}
+                >
+                  <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1 flex-shrink-0" />
+                  <span>{criterion}</span>
+                </motion.li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
-
-
-    <div id="contact" className="bg-white py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">Contact Us</h2>
-        <div className="max-w-3xl mx-auto py-16 bg-[#F4F4F4] py-16 rounded-xl p-8 shadow-md">
-          <div className="space-y-6">
-            <div className="flex items-center">
-              <EnvelopeIcon className="w-8 h-8 text-[#CF7500] mr-4" />
-              <div>
-                <h3 className="text-xl font-semibold text-gray-800">Email</h3>
-                <a 
-                  href="mailto:manoj.r@manipal.edu" 
-                  className="text-gray-600 hover:text-[#CF7500] transition-colors"
+      {/* Contact Section */}
+      <motion.div 
+        id="contact" 
+        className="bg-[#F4F4F4] py-24"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.8 } }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2 
+            className="text-4xl font-bold text-center text-gray-900 mb-12"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            Contact Us
+          </motion.h2>
+          <motion.div 
+            className="max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="space-y-6">
+              {[
+                { icon: EnvelopeIcon, title: "Email", content: "manoj.r@manipal.edu", href: "mailto:manoj.r@manipal.edu" },
+                { icon: PhoneIcon, title: "Mobile", content: "+91 9740288939", href: "tel:+919740288939" },
+                { icon: MapPinIcon, title: "Location", content: "Manipal Institute of Technology, Manipal, Karnataka 576104" },
+              ].map((item, index) => (
+                <motion.div 
+                  key={index}
+                  className="flex items-center"
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.1 * index }}
                 >
-                  manoj.r@manipal.edu
-                </a>
-              </div>
+                  <item.icon className="w-8 h-8 text-[#CF7500] mr-4" />
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
+                    {item.href ? (
+                      <a 
+                        href={item.href}
+                        className="text-gray-600 hover:text-[#CF7500] transition-colors"
+                      >
+                        {item.content}
+                      </a>
+                    ) : (
+                      <p className="text-gray-600">{item.content}</p>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
             </div>
             
-            <div className="flex items-center">
-              <PhoneIcon className="w-8 h-8 text-[#CF7500] mr-4" />
-              <div>
-                <h3 className="text-xl font-semibold text-gray-800">Mobile</h3>
-                <a 
-                  href="tel:+919740288939" 
-                  className="text-gray-600 hover:text-[#CF7500] transition-colors"
-                >
-                  +91 9740288939
-                </a>
-              </div>
-            </div>
-            
-            <div className="flex items-center">
-              <MapPinIcon className="w-8 h-8 text-[#CF7500] mr-4" />
-              <div>
-                <h3 className="text-xl font-semibold text-gray-800">Location</h3>
-                <p className="text-gray-600">
-                  Manipal Institute of Technology, Manipal, Karnataka 576104
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500 italic">
-              * For any inquiries related to the Product Development Cell
-            </p>
-          </div>
+            <motion.div 
+              className="mt-8 text-center"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <p className="text-sm text-gray-500 italic">
+                * For any inquiries related to the Product Development Cell
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
-    </div>
-          {/* Contact CTA */}
-          <div className="bg-[#CF7500] py-16 text-center">
-        <h2 className="text-4xl font-bold text-white mb-4">
+      </motion.div>
+
+      {/* Contact CTA */}
+      <motion.div 
+        className="bg-[#CF7500] py-16 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.h2 
+          className="text-4xl font-bold text-white mb-4"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           Join the Product Development Centre
-        </h2>
-        <p className="text-white text-xl mb-8">
-          Transform your learning experience with real-world projects</p>
-          {/* <p className="font-bold text-white mb-2">A programming test may be conducted based on the number of applications*</p> */}
-        <a 
+        </motion.h2>
+        <motion.p 
+          className="text-white text-xl mb-8"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          Transform your learning experience with real-world projects
+        </motion.p>
+        <motion.a 
           href="https://docs.google.com/forms/d/1MllTwj8JtS2yDV8dERSx9-iQakt_pFQ483qYHoIS6rU/viewform?edit_requested=true" 
           target="_blank"
-          className="bg-white text-[#CF7500] px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#FFF4E6] transition-colors"
+          className="bg-white text-[#CF7500] px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#FFF4E6] transition-colors inline-block"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
           Apply Now
-        </a>
-        
-      </div>
+        </motion.a>
+      </motion.div>
 
       {/* Footer */}
       <footer className="bg-black text-white py-6 text-center">
-        <p>© 2024 Department of Computer Science & Engineering,MIT Manipal</p>
+        <p>© 2024 Department of Computer Science & Engineering, MIT Manipal</p>
         <p className="text-sm text-gray-400 mt-2">*Conditions Apply</p>
       </footer>
     </div>
@@ -449,3 +554,4 @@ const ManipulLandingPage = () => {
 };
 
 export default ManipulLandingPage;
+
