@@ -42,7 +42,6 @@ const ManipulLandingPage = () => {
     }
   ];
 
-  // Header component moved up to be a separate component
   const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -102,7 +101,7 @@ const ManipulLandingPage = () => {
                   Benefits
                 </a>
                 <a 
-                  href="https://forms.gle/yourGoogleFormLink" 
+                  href="https://docs.google.com/forms/d/1MllTwj8JtS2yDV8dERSx9-iQakt_pFQ483qYHoIS6rU/viewform?edit_requested=true" 
                   target="_blank" 
                   className="bg-[#CF7500] text-white px-4 py-2 rounded-full hover:bg-[#A55800] transition-colors"
                   onClick={toggleMobileMenu}
@@ -130,7 +129,7 @@ const ManipulLandingPage = () => {
               <a href="#projects" className="text-gray-600 hover:text-[#CF7500]">Projects</a>
               <a href="#benefits" className="text-gray-600 hover:text-[#CF7500]">Benefits</a>
               <a 
-                href="https://forms.gle/yourGoogleFormLink" 
+                href="https://docs.google.com/forms/d/1MllTwj8JtS2yDV8dERSx9-iQakt_pFQ483qYHoIS6rU/viewform?edit_requested=true" 
                 target="_blank" 
                 className="bg-[#CF7500] text-white px-4 py-2 rounded-full hover:bg-[#A55800] transition-colors"
               >
@@ -431,7 +430,7 @@ const ManipulLandingPage = () => {
           Transform your learning experience with real-world projects</p>
           {/* <p className="font-bold text-white mb-2">A programming test may be conducted based on the number of applications*</p> */}
         <a 
-          href="https://forms.gle/yourGoogleFormLink" 
+          href="https://docs.google.com/forms/d/1MllTwj8JtS2yDV8dERSx9-iQakt_pFQ483qYHoIS6rU/viewform?edit_requested=true" 
           target="_blank"
           className="bg-white text-[#CF7500] px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#FFF4E6] transition-colors"
         >
