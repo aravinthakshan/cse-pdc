@@ -61,7 +61,7 @@ const ManipulLandingPage = () => {
                 alt="PDC Logo" 
                 className="h-10 w-auto rounded-lg"
               />
-              <div className="text-lg font-medium text-gray-800 tracking-wide">
+              <div className="text-xl tracking-wide  text-black-400 mb-0.2">
                 PDC, MIT Manipal
               </div>
             </div>
