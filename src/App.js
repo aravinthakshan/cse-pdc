@@ -132,7 +132,7 @@ export default function ManipulLandingPage() {
             >
               <p className="text-lg text-gray-700 mb-4">
                 The <strong>Product Development Centre</strong> (PDC) is an initiative by the 
-                <strong> Department of Computer Science & Engineering of MIT Manipal</strong>, it offers opportunities to work on real-time projects 
+                <strong> Department of Computer Science & Engineering of MIT Manipal</strong> <br></br> it offers opportunities to work on real-time projects 
                 under faculty mentorship, aligned with industry standards and technological advancements.
               </p>
               <p className="text-lg text-gray-700 mb-4">
@@ -286,88 +286,90 @@ export default function ManipulLandingPage() {
         </div>
       </motion.div>
 
-      {/* Eligibility and Contact Section */}
-      <motion.div 
-        className="py-24 bg-gradient-to-b [#F4F4F4]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.8 } }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Eligibility Section */}
-            <motion.div 
-              initial={{ x: -50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Eligibility Criteria</h2>
-              <ul className="space-y-4 text-gray-700">
-                {[
-                  "Open to B.Tech students from 4th, 6th, and 8th Semesters, No backs.",
-                  "Familiarity with HTML, CSS, and JavaScript, basic understanding of Java and OOP concepts.",
-                  "Willingness to learn and adapt to new technologies, frameworks and dedicate sufficient time.",
-                  "Good communication skills and the ability to work effectively in a team environment.",
-                ].map((criterion, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1 flex-shrink-0" />
-                    <span>{criterion}</span>
-                  </li>
-                ))}
-              </ul>
-              {/* <motion.img 
-                src="/eligibility.jpg" 
-                alt="Eligibility" 
-                className="mt-8 rounded-lg shadow-md"
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              /> */}
-            </motion.div>
+  {/* Eligibility and Contact Section */}
+  <motion.div 
+    className="py-24 bg-gradient-to-b [#F4F4F4]"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1, transition: { duration: 0.8 } }}
+    viewport={{ once: true }}
+  >
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid md:grid-cols-2 gap-12">
+        {/* Eligibility Section */}
+        <motion.div 
+          className="bg-white rounded-lg shadow-md p-8"  // Added box styles
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Eligibility Criteria</h2>
+          <ul className="space-y-4 text-gray-700">
+            {[
+              "Open to B.Tech students from 4th, 6th, and 8th Semesters, No backs.",
+              "Familiarity with HTML, CSS, and JavaScript, basic understanding of Java and OOP concepts.",
+              "Willingness to learn and adapt to new technologies, frameworks and dedicate sufficient time.",
+              "Good communication skills and the ability to work effectively in a team environment.",
+            ].map((criterion, index) => (
+              <li key={index} className="flex items-start">
+                <CheckBadgeIcon className="w-6 h-6 text-[#CF7500] mr-3 mt-1 flex-shrink-0" />
+                <span>{criterion}</span>
+              </li>
+            ))}
+          </ul>
+          {/* <motion.img 
+            src="/eligibility.jpg" 
+            alt="Eligibility" 
+            className="mt-8 rounded-lg shadow-md"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          /> */}
+        </motion.div>
 
-            {/* Contact Section */}
-            <motion.div 
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Us</h2>
-              <div className="space-y-6">
-                {[
-                  { icon: EnvelopeIcon, title: "Email", content: "manoj.r@manipal.edu", href: "mailto:manoj.r@manipal.edu" },
-                  { icon: PhoneIcon, title: "Mobile", content: "+91 9740288939", href: "tel:+919740288939" },
-                  { icon: MapPinIcon, title: "Location", content: "Manipal Institute of Technology, Manipal, Karnataka 576104" },
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center">
-                    <item.icon className="w-8 h-8 text-[#CF7500] mr-4" />
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
-                      {item.href ? (
-                        <a 
-                          href={item.href}
-                          className="text-gray-600 hover:text-[#CF7500] transition-colors"
-                        >
-                          {item.content}
-                        </a>
-                      ) : (
-                        <p className="text-gray-600">{item.content}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+        {/* Contact Section */}
+        <motion.div 
+          className="bg-white rounded-lg shadow-md p-8"  // Added box styles
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Us</h2>
+          <div className="space-y-6">
+            {[
+              { icon: EnvelopeIcon, title: "Email", content: "manoj.r@manipal.edu", href: "mailto:manoj.r@manipal.edu" },
+              { icon: PhoneIcon, title: "Mobile", content: "+91 9740288939", href: "tel:+919740288939" },
+              { icon: MapPinIcon, title: "Location", content: "Manipal Institute of Technology, Manipal, Karnataka 576104" },
+            ].map((item, index) => (
+              <div key={index} className="flex items-center">
+                <item.icon className="w-8 h-8 text-[#CF7500] mr-4" />
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800">{item.title}</h3>
+                  {item.href ? (
+                    <a 
+                      href={item.href}
+                      className="text-gray-600 hover:text-[#CF7500] transition-colors"
+                    >
+                      {item.content}
+                    </a>
+                  ) : (
+                    <p className="text-gray-600">{item.content}</p>
+                  )}
+                </div>
               </div>
-              {/* <motion.img 
-                src="/contact.jpg" 
-                alt="Contact" 
-                className="mt-8 rounded-lg shadow-md"
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              /> */}
-            </motion.div>
+            ))}
           </div>
-        </div>
-      </motion.div>
+          {/* <motion.img 
+            src="/contact.jpg" 
+            alt="Contact" 
+            className="mt-8 rounded-lg shadow-md"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          /> */}
+        </motion.div>
+      </div>
+    </div>
+  </motion.div>
 
       {/* Contact CTA */}
       <motion.div 
